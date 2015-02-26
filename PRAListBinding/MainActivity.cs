@@ -10,7 +10,7 @@ using Squareup.Picasso;
 
 namespace PRAListBinding
 {
-    [Activity(Label = "vDoers", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "vDoers", MainLauncher = true, Icon = "@drawable/pra")]
     public class MainActivity : Activity, IDataRowView<RowItem>
     {
 
