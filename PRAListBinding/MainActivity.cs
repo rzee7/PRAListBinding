@@ -42,11 +42,29 @@ namespace PRAListBinding
                 view = LayoutInflater.Inflate(Resource.Layout.ListItem, parent, false);
             view.FindViewById<TextView>(Resource.Id.titleView).Text = item.Title;
             var imageView = view.FindViewById<ImageView>(Resource.Id.imageView);
-            Picasso.With(view.Context).Load(item.ImageUrl).Into(imageView);
+            Picasso.With(view.Context).Load(item.ImageUrl).Into(imageView, new ImageLoadCallBack(view.FindViewById<ProgressBar>(Resource.Id.progressView)));
             return view;
         }
 
         #endregion
+    }
+
+    public class ImageLoadCallBack : Java.Lang.Object, ICallback
+    {
+        private ProgressBar progressView;
+        public ImageLoadCallBack(ProgressBar _progressView)
+        {
+            progressView = _progressView;
+        }
+        public void OnError()
+        {
+            progressView.Visibility = ViewStates.Invisible;
+        }
+
+        public void OnSuccess()
+        {
+            progressView.Visibility = ViewStates.Invisible;
+        }
     }
 }
 
